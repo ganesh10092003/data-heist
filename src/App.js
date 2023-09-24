@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Suspense, lazy } from "react";
+import ReactLoading from 'react-loading';
+const Home = lazy(() => import("./pages/Home.jsx"))
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense
+      fallback={
+        <div className="h-screen w-full flex items-center justify-center">
+          <ReactLoading type="cylon" color="#4FA9E2" height={'50px'} width={'50px'} />
+        </div>
+      }
+    >
+      <Home />
+    </Suspense>
   );
-}
+};
 
 export default App;
