@@ -1,5 +1,7 @@
 import React, { useState } from "react"
-import logo from "../../assets/logo.png"
+import logo from "../../assets/title.png"
+import { GiHamburgerMenu } from "react-icons/gi"
+
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,17 +34,31 @@ const NavBar = () => {
   return (
     <div className="flex px-8 items-center justify-between">
       <div className="logo flex justify-center items-center">
-        <img src={logo} alt="logo" className="w-20 h-20" />
-        <h1 className="font-[MedievalSharp] text-2xl text-white">
+        <a href="/">
+          <img src={logo} alt="logo" className="w-16 h-20" />
+        </a>
+        <h1 className="font-[MedievalSharp] text-3xl text-white">
           DataHeist
         </h1>
       </div>
-      <div className="flex justify-center items-center lg:hidden">
+
+      <div className="flex justify-center items-center lg:hidden z-10 absolute right-10 top-5">
         <button className="text-white" onClick={toggleNavbar}>
-          Toggle
+          <GiHamburgerMenu />
         </button>
       </div>
-      <ul className={`lg:flex lg:flex-row ${isOpen ? "flex-col" : "hidden"} text-white text-lg justify-center items-center space-x-10`}>
+
+      <ul className="lg:hidden flex flex-col justify-center items-center top-0 right-0 absolute h-screen text-white">
+        {navbarItems.map((value, index) => {
+          return (
+            <li className={`${!isOpen && "hidden"} hover:scale-110`} key={index}>
+              <a href={value.redirecting}>{value.title}</a>
+            </li>
+          )
+        })}
+      </ul>
+
+      <ul className="lg:flex lg:flex-row hidden text-white text-lg justify-center items-center space-x-10">
         {navbarItems.map((value, index) => {
           return (
             <li className="hover:scale-110" key={index}>
@@ -53,7 +69,6 @@ const NavBar = () => {
       </ul>
     </div >
   );
-
 }
 
 export default NavBar;

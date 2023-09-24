@@ -4,7 +4,7 @@ import Hero from "../components/hero/Hero"
 
 const Home = () => {
   return (
-    <div className="bg-[#000000]">
+    <div className="bg-[#000000] min-h-screen">
       <NavBar />
       <Hero />
     </div>
