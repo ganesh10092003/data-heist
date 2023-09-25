@@ -3,11 +3,6 @@ import logo from "../../assets/title.png"
 import { GiHamburgerMenu } from "react-icons/gi"
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
   const navbarItems = [
     {
       title: "About Us",
@@ -30,6 +25,10 @@ const NavBar = () => {
       redirecting: "blog"
     }
   ];
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className="flex px-8 items-center justify-between">
@@ -42,13 +41,13 @@ const NavBar = () => {
         </h1>
       </div>
 
-      <div className="flex justify-center items-center lg:hidden z-10 absolute right-10 top-5">
+      <div className="flex justify-center items-center lg:hidden z-10 absolute right-10 top-8">
         <button className="text-white" onClick={toggleNavbar}>
           <GiHamburgerMenu />
         </button>
       </div>
 
-      <ul className="lg:hidden flex flex-col justify-center items-center top-0 right-0 absolute h-screen text-white">
+      <ul className="lg:hidden flex flex-col justify-center items-center top-0 right-6 absolute h-screen text-white">
         {navbarItems.map((value, index) => {
           return (
             <li className={`${!isOpen && "hidden"} hover:scale-110`} key={index}>
