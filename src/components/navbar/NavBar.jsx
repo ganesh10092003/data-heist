@@ -6,23 +6,23 @@ const NavBar = () => {
   const navbarItems = [
     {
       title: "About Us",
-      redirecting: "about"
+      redirecting: "/"
     },
     {
       title: "Services",
-      redirecting: "services"
+      redirecting: "/"
     },
     {
       title: "Use Cases",
-      redirecting: "use-cases"
+      redirecting: "/"
     },
     {
       title: "Sponcers",
-      redirecting: "sponcers"
+      redirecting: "/"
     },
     {
       title: "Blog",
-      redirecting: "blog"
+      redirecting: "/"
     }
   ];
   const [isOpen, setIsOpen] = useState(false);
@@ -41,23 +41,23 @@ const NavBar = () => {
         </h1>
       </div>
 
-      <div className="flex justify-center items-center lg:hidden z-10 absolute right-10 top-8">
+      <div className="flex justify-center items-center lg:hidden z-40 absolute right-10 top-8">
         <button className="text-white" onClick={toggleNavbar}>
           <GiHamburgerMenu />
         </button>
       </div>
 
-      <ul className="lg:hidden flex flex-col justify-center items-center top-0 right-6 absolute h-screen text-white">
+      <ul className={`${!isOpen && "hidden"} lg:hidden flex flex-col justify-center w-40 items-center top-0 z-30 bg-[rgba(3,3,5,0.7)] right-6 gap-2 absolute h-screen text-white text-xl`}>
         {navbarItems.map((value, index) => {
           return (
-            <li className={`${!isOpen && "hidden"} hover:scale-110`} key={index}>
+            <li className={"hover:scale-110"} key={index}>
               <a href={value.redirecting}>{value.title}</a>
             </li>
           )
         })}
       </ul>
 
-      <ul className="lg:flex lg:flex-row hidden text-white text-lg justify-center items-center space-x-10">
+      <ul className="lg:flex lg:flex-row hidden text-white text-xl justify-center items-center space-x-10">
         {navbarItems.map((value, index) => {
           return (
             <li className="hover:scale-110" key={index}>

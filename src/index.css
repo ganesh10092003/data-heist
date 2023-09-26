@@ -25,7 +25,7 @@ html {
 
 ::-webkit-scrollbar {
   background-color: black;
-  width: 12px;
+  width: 8px;
   scrollbar-color: #4FA9E2;
 }
 
