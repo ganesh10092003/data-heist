@@ -42,22 +42,6 @@ const RoadMap = () => {
 
         </div>
       </div>
-
-      {/* <div className="flex overflow-x-scroll overflow-y-hidden w-[400vw] h-[80vh] border-2 border-red-500">
-
-        <div className="flex items-center h-full w-screen pl-20 border-2 border-green-500">
-          <div className="flex  w-screen items-center h-12 border-2 border-orange-500">
-            <span className="bg-[rgba(255,255,255,0.5)] rotate-[15deg] w-[10%] h-2 rounded-lg"></span>
-            <span className="rounded-full h-4 w-4 bg-[white] self-end mb-[-0.25rem] mx-[-0.5rem]"></span>
-            <span className="bg-[rgba(255,255,255,0.5)] rotate-[-1.9deg] w-[75%] h-2"></span>
-            <span className="rounded-full h-4 w-4 bg-[white] self-start mt-[-0.25rem] mx-[-0.5rem]"></span>
-          </div>
-        </div>
-
-        <div className="flex bg-[white] w-screen h-full border-2 border-green-500"></div>
-        <div className="flex bg-[green] w-screen h-full border-2 border-green-500"></div>
-        <div className="flex bg-[orange] w-screen h-full border-2 border-green-500"></div>
-      </div> */}
     </div>
   );
 }
