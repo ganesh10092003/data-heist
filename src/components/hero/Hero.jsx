@@ -6,7 +6,7 @@ import TextAnimation from "../textanimation/TextAnimation"
 const Hero = () => {
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center overflow-hidden">
         <img className="lg:w-auto w-[150%]" src={heroLogo} alt="head" />
         <img className="lg:w-[40%] w-2/3" src={logo} alt="logo" />
 

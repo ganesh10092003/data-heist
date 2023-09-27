@@ -7,8 +7,8 @@ module.exports = {
     extend: {
       keyframes: {
         shiftColors: {
-          '0%, 100%': { background: 'rgba(4,4,15,0.9)' },
-          '50%': { background: 'rgba(4,4,15,0.4)' }
+          '0%, 100%': { background: 'rgba(0,0,0,0.9)' },
+          '50%': { background: 'rgba(0,0,0,0.4)' }
         }
       }
     },

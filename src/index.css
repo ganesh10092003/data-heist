@@ -18,7 +18,7 @@
 }
 
 html {
-  overflow-x: hidden !important;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
 }
@@ -26,6 +26,7 @@ html {
 ::-webkit-scrollbar {
   background-color: black;
   width: 8px;
+  height: 8px;
   scrollbar-color: #4FA9E2;
 }
 

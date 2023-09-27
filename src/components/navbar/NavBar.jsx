@@ -31,7 +31,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="flex px-8 items-center justify-between">
+    <div className="flex px-8 items-center justify-between overflow-x-hidden">
       <div className="logo flex justify-center items-center">
         <a href="/">
           <img src={logo} alt="logo" className="w-16 h-20" />
@@ -41,13 +41,13 @@ const NavBar = () => {
         </h1>
       </div>
 
-      <div className="flex justify-center items-center lg:hidden z-40 absolute right-10 top-8">
+      <div className="flex justify-center items-center lg:hidden z-40 fixed right-10 top-8">
         <button className="text-white" onClick={toggleNavbar}>
           <GiHamburgerMenu />
         </button>
       </div>
 
-      <ul className={`${!isOpen && "hidden"} lg:hidden flex flex-col justify-center w-40 items-center top-0 z-30 bg-[rgba(3,3,5,0.7)] right-6 gap-2 absolute h-screen text-white text-xl`}>
+      <ul className={`${!isOpen && "hidden"} lg:hidden flex flex-col justify-center w-36 items-center right-0 top-0 pr-6 z-30 bg-[rgba(3,3,5,0.5)] gap-2 fixed h-full text-white text-xl`}>
         {navbarItems.map((value, index) => {
           return (
             <li className={"hover:scale-110"} key={index}>
