@@ -10,9 +10,9 @@ module.exports = {
           '0%, 100%': { background: 'rgba(0,0,0,0.9)' },
           '50%': { background: 'rgba(0,0,0,0.4)' }
         },
-        slideRight: {
-          '0%': { "background-postion": '-100%' },
-          '100%': { "background-postion": '100%' }
+        lineAnimation: {
+          '0%': { 'width': '0%' },
+          '100%': { 'width': '100%' }
         }
       }
     },

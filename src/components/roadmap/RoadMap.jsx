@@ -1,66 +1,52 @@
 import React, { useState, useEffect } from "react"
 import roadMap from "../../assets/title.png"
+import { gsap } from 'gsap'
 
 const RoadMap = () => {
-  const [progress, setProgress] = useState(0); // Progress from 0 to 100
+  const [timeline, setTimeline] = useState(new gsap.timeline());
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleArrowKeyPress = (event) => {
       if (event.keyCode === 39 || event.key === 'ArrowRight') {
-        // The right arrow key was pressed
-        setProgress((progress) => {
-          return (progress + 10);
-        })
-        console.log("Progress = ", progress);
+        setProgress((prevProgress) => {
+          if (prevProgress < 2) return prevProgress + 1;
+          return prevProgress;
+        });
       }
+
       if (event.keyCode === 37 || event.key === 'ArrowLeft') {
-        // The left arrow key was pressed
-        setProgress((progress) => {
-          return (progress - 10);
-        })
-        console.log("Progress = ", progress);
+        setProgress((prevProgress) => {
+          if (prevProgress > 0) return prevProgress - 1;
+          return prevProgress;
+        });
       }
     };
+
     document.addEventListener('keydown', handleArrowKeyPress);
+
     return () => {
       document.removeEventListener('keydown', handleArrowKeyPress);
     };
-  }, []);
+  }, [timeline]);
 
-  const calculateColor = (lineIndex) => {
-    if (lineIndex === 1) {
-      if (progress === 0) {
-        return `linear-gradient(#4FA9E2 0%, #4FA9E2 30%)`;
-      }
-      else if (progress >= 10) {
-        return '#4FA9E2';
-      }
+  useEffect(() => {
+    console.log("Progress = ", progress);
+    // Use the updated progress state to trigger animations
+    if (progress === 0) {
+      timeline.to(".line-2", { width: "0%", duration: 0.6 });
+      timeline.to(".bullet-1", { background: "#152329", duration: 0.2 })
+      timeline.to(".line-1", { width: "30%", duration: 0.4 });
+    } else if (progress === 1) {
+      timeline.to(".line-1", { width: "100%", duration: 0.4 });
+      timeline.to(".bullet-1", { background: "#4FA9E2", duration: 0.2 })
+      timeline.to(".bullet-2", { background: "#152329", duration: 0.2 })
+      timeline.to(".line-2", { width: "60%", duration: 0.6 });
+    } else if (progress === 2) {
+      timeline.to(".line-2", { width: "100%", duration: 0.4 });
+      timeline.to(".bullet-2", { background: "#4FA9E2", duration: 0.2 })
     }
-    else if (lineIndex === 2) {
-      if (progress === 10) {
-        return `linear-gradient(#4FA9E2 0%, #4FA9E2 60%)`;
-      }
-      else if (progress >= 20) {
-        return `#4FA9E2`;
-      }
-    }
-    else if (lineIndex === 3) {
-      if (progress >= 60) {
-        // Calculate the width of the red color for the third line
-        const lineWidth = Math.min(100, progress - 60);
-        return `linear-gradient(to right, #4FA9E2 ${lineWidth}%, #152329 ${lineWidth}%)`;
-      }
-    }
-    return '#152329'; // Default color
-  };
-
-
-  // const calculateColor = (lineIndex) => {
-  //   if (lineIndex * 10 <= progress) {
-  //     return '#4FA9E2';
-  //   }
-  //   return '#152329'; 
-  // };
+  }, [timeline, progress]);
 
   return (
     <div className="mt-16" style={{ background: `radial-gradient(circle at 300px 750px, rgba(17, 44, 62, 0.7) 0%, #000000 45%)` }}>
@@ -70,33 +56,26 @@ const RoadMap = () => {
         <div className="frame-container flex items-stretch overflow-x-auto h-[80vh]">
 
           {/* Frame-1 */}
-          <div className="frame w-screen h-full flex flex-col flex-shrink-0 justify-center">
-            <div className="flex w-screen pl-20 items-center h-12 ">
+          <div className="frame pl-20 w-screen h-full flex flex-col flex-shrink-0 justify-center">
+            <div className="flex items-center h-12 ">
               {/* Line-1 */}
               <div className="bg-[#152329] rotate-[15deg] w-[10%] h-2 rounded-lg">
-                <div
-                  className="m-0 p-0 w-[100%] h-full rounded-lg animate-[slideRight_5s_linear_infinite]"
-                  style={{ backgroundColor: calculateColor(1) }}
-                ></div>
+                <div className="m-0 p-0 w-[30%] bg-[#4FA9E2] h-full rounded-lg line-1"></div>
               </div>
-
-              <div className="rounded-full h-4 w-4 bg-[#152329] self-end mb-[-0.2rem] mx-[-0.5rem]"></div>
-
+              {/* Bullet-1 */}
+              <div className="rounded-full h-4 w-4 z-10 bg-[#152329] self-end mb-[-0.2rem] mx-[-0.5rem] bullet-1"></div>
               {/* Line-2 */}
               <div className="bg-[#152329] rotate-[-1.98deg] w-[75%] h-2 rounded-lg">
-                <div
-                  className="m-0 p-0 w-[100%] h-full rounded-lg animate-[slideRight_2s_linear_infinite]"
-                  style={{ backgroundColor: calculateColor(2) }}
-                ></div>
+                <div className="m-0 p-0 w-0 bg-[#4FA9E2] h-full rounded-lg line-2"></div>
               </div>
-
-              <div className="rounded-full h-4 w-4 bg-[#152329] self-start mt-[-0.25rem] mx-[-0.5rem]"></div>
+              {/* Bullet-2 */}
+              <div className="rounded-full h-4 w-4 z-10 bg-[#152329] self-start mt-[-0.25rem] mx-[-0.5rem] bullet-2"></div>
             </div>
           </div>
 
           {/* Frame-2 */}
           <div className="frame w-screen h-full flex flex-col flex-shrink-0 justify-center">
-            <div className="flex w-screen pl-20 items-center h-12 ">
+            <div className="flex w-screen items-center h-12 ">
               {/* Content for Frame 2 */}
               <div className="bg-[#152329] rotate-[15deg] w-[10%] h-2 rounded-lg"></div>
               <div className="rounded-full h-4 w-4 bg-[#152329] self-end mb-[-0.2rem] mx-[-0.5rem]"></div>
